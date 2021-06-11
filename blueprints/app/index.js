@@ -37,6 +37,18 @@ module.exports = {
         outdent;
     }
 
+    let browserTargets = process.ENV.EMBER_CLI_BROWSER_TARGETS;
+
+    if (!browserTargets) {
+      browserTargets = JSON.stringify(
+        ['last 1 Chrome versions', 'last 1 Firefox versions', 'last 1 Safari versions'],
+        null,
+        2
+      );
+    }
+
+    let nodeTargets = process.ENV.EMBER_CLI_NODE_TARGETS;
+
     return {
       name,
       modulePrefix: name,
@@ -48,6 +60,8 @@ module.exports = {
       blueprintOptions,
       embroider,
       lang: options.lang,
+      browserTargets,
+      nodeTargets,
     };
   },
 
